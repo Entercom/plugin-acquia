@@ -9,9 +9,12 @@
     "drutiny/http": "2.x-dev",
     "acquia/http-hmac-php": "^4.0"
   },
-  "name": "drutiny/acquia-entercom",
+  "config": {
+    "bin-dir": "bin"
+  },
+  "name": "drutiny/acquia",
   "type": "library",
-  "description": "Entercom ACSF support for the Drutiny audit checker",
+  "description": "Acquia support for the Drutiny audit checker",
   "keywords": ["drupal", "audit", "drush", "ssh", "report"],
   "license": "GPL-2.0",
   "authors": [
