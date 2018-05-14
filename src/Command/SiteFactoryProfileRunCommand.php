@@ -50,6 +50,12 @@ class SiteFactoryProfileRunCommand extends ProfileRunCommand {
         NULL,
         InputOption::VALUE_OPTIONAL,
         'A regex to filter domains by. E.g. www\..+\.com.'
+      )
+      ->addOption(
+        'stack',
+        NULL,
+        InputOption::VALUE_OPTIONAL,
+        'An integer indicating which ACSF stack to target. Works in tandem with the target drush alias.'
       );
   }
 
@@ -88,6 +94,13 @@ class SiteFactoryProfileRunCommand extends ProfileRunCommand {
     if ($input->getOption('primary-only')) {
       $sites = array_filter($sites, function ($site) {
         return $site['is_primary'];
+      });
+    }
+
+    // Optionally filter by stack.
+    if ($stack_id = $input->getOption('stack')) {
+      $sites = array_filter($sites, function ($site) use ($stack_id) {
+        return $stack_id == $site['stack_id'];
       });
     }
 
